@@ -1,0 +1,16 @@
+{
+  "name": "sail-agency/cmp-gtm",
+  "description": "CMP Loader for GTM",
+  "homepage": "https://github.com/sail-agency/wp-plugin-cmp-gtm",
+  "authors": [
+    {
+      "name": "Are Kristoffer Lamo",
+      "homepage": "https://sail.no/folk/are-kristoffer-lamo/"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.4",
+    "htmlburger/carbon-fields": "^3.6"
+  }
+}

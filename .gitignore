@@ -1,0 +1,25 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+.history
+.ionide
+.idea
+
+node_modules/
+vendor/
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# Local install
+wp_install/
+docker-compose.yml
