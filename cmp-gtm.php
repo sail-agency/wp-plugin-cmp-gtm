@@ -3,7 +3,7 @@
 Plugin Name: CMP & GTM loader
 Description: GDPR friendlier GTM loader.
 Author: Are Kristoffer Lamo
-Version: 0.0.1
+Version: 0.0.2
 Author URI: https://sail.no/folk/are-kristoffer-lamo/
 Text Domain: cmp-gtm
 */
