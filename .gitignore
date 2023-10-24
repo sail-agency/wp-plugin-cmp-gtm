@@ -23,3 +23,6 @@ vendor/
 # Local install
 wp_install/
 docker-compose.yml
+
+build/
+*.zip
