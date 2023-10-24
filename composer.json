@@ -8,6 +8,7 @@
       "homepage": "https://sail.no/folk/are-kristoffer-lamo/"
     }
   ],
+  "license": "proprietary",
   "type": "wordpress-plugin",
   "require": {
     "php": ">=7.4",
