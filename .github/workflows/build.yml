@@ -1,0 +1,42 @@
+name: Publish to build branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ 'develop' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    # PHP
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Move build files
+      run: rsync -avz ./* ./public/ --exclude=node_modules --exclude=package.json --exclude=composer.lock --exclude=.gitignore --exclude=.github --exclude=docker-compose.yml --exclude=docker --exclude=README.md --exclude=tsconfig.json
+
+    # Make new build available
+    - name: Push
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: self
+        BRANCH: build # The branch name where you want to push the assets
+        FOLDER: public # The directory where your assets are generated
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+        MESSAGE: "Build: ({sha}) {msg}" # The commit message
