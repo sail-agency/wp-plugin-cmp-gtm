@@ -19,6 +19,9 @@ class Header
         $this->cookieinformation();
 
         if( ! empty($this->gtm_id) ) {
+          if ( Option::get_gtm_consent() ) {
+            $this->consent_new();
+          }
           $this->gtm();
         }
       }
@@ -41,5 +44,39 @@ class Header
       </script>
       
       ";
+    }
+
+    private function consent() {
+      echo "
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(['consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+      }]);
+      window.dataLayer.push(['set', 'ads_data_redaction', true ]);
+      </script>
+      ";
+    }
+
+    private function consent_new() {
+      echo "<script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag(){ dataLayer.push(arguments); }
+
+      gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+      });
+
+      gtag('set', 'ads_data_redaction', true);
+      </script>";
     }
 }
