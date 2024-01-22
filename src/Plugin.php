@@ -16,6 +16,7 @@ class Plugin
 
         add_action('after_setup_theme', [ $this, 'boot' ]);
         add_action('plugins_loaded', [ $this, 'translation' ]);
+        add_action('plugins_loaded', [ $this, 'integration' ]);
         add_action('carbon_fields_register_fields', [ $this, 'register_fields' ]);
         add_action('wp_head', [ $this, 'header' ]);        
     }
@@ -30,6 +31,10 @@ class Plugin
         load_plugin_textdomain('sail', false, CMP_GTM_PLUGIN_DIR . '/languages/');
     }
 
+    public function integration()
+    {
+        new Integration\Elementor();
+    }
 
     public function boot()
     {
@@ -43,6 +48,6 @@ class Plugin
 
     public function header()
     {
-        new Output\Header();
+      new Output\Header();
     }
 }
