@@ -28,7 +28,7 @@ class Plugin
 
     public function translation()
     {
-        load_plugin_textdomain('sail', false, CMP_GTM_PLUGIN_DIR . '/languages/');
+        load_plugin_textdomain('sail-cmp-gtm', false, CMP_GTM_PLUGIN_DIR . '/languages/');
     }
 
     public function integration()
