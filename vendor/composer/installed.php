@@ -3,7 +3,7 @@
         'name' => 'sail-agency/cmp-gtm',
         'pretty_version' => 'dev-develop',
         'version' => 'dev-develop',
-        'reference' => 'bf53ae798b9413f2c0515a2e9e033ddc06dff1db',
+        'reference' => '02a3549732b377935cc02ea2bf2919ac050a475c',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'sail-agency/cmp-gtm' => array(
             'pretty_version' => 'dev-develop',
             'version' => 'dev-develop',
-            'reference' => 'bf53ae798b9413f2c0515a2e9e033ddc06dff1db',
+            'reference' => '02a3549732b377935cc02ea2bf2919ac050a475c',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
