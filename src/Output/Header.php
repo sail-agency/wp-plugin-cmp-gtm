@@ -15,19 +15,14 @@ class Header
       $this->language_code = substr(get_locale(), 0, 2);
       $this->gtm_id  = Option::get_gtm_id();
 
-      if ( ! Admin\Preview::is_preview() ) {
+      if ( ! Admin\Preview::is_preview() && ! empty($this->gtm_id) ) {
+        echo $this->script_tag( $this->consent() );
         $this->cookieinformation();
 
-        if( ! empty($this->gtm_id) ) {
-          if ( Option::get_gtm_consent() ) {
-            echo $this->script_tag( $this->consent() );
-          }
-
-          if ( Option::get_load_delay() !== 'none' ) {
-            echo $this->script_tag($this->delay_listener(Option::get_load_delay(), $this->gtm_script($this->gtm_id)) );
-          } else {
-            echo $this->script_tag( $this->gtm_script($this->gtm_id) );
-          }
+        if ( Option::get_load_delay() !== 'none' ) {
+          echo $this->script_tag($this->delay_listener(Option::get_load_delay(), $this->gtm_script($this->gtm_id)) );
+        } else {
+          echo $this->script_tag( $this->gtm_script($this->gtm_id) );
         }
       }
     }
