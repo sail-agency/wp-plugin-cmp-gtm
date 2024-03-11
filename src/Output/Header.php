@@ -67,7 +67,8 @@ class Header
       'wait_for_update': 500
       });
 
-      gtag('set', 'ads_data_redaction', true);";
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);";
     }
 
     private function script_tag($script) {
