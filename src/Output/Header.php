@@ -8,32 +8,48 @@ use Sail\CMP_GTM\Admin;
 class Header
 {
   private $language_code;
-  private $gtm_id;
 
     public function __construct()
     {
       $this->language_code = substr(get_locale(), 0, 2);
-      $this->gtm_id  = Option::get_gtm_id();
+    }
 
+    public function outputScripts(): void {
       if ( ! Admin\Preview::is_preview() ) {
         $this->cookieinformation();
+        
+        $gtm_id = Option::get_gtm_id();
 
-        if( ! empty($this->gtm_id) ) {
-          if ( Option::get_gtm_consent() ) {
-            echo $this->script_tag( $this->consent() );
-          }
+        if ( empty($gtm_id) ) {
+          return;
+        }
 
-          if ( Option::get_load_delay() !== 'none' ) {
-            echo $this->script_tag($this->delay_listener(Option::get_load_delay(), $this->gtm_script($this->gtm_id)) );
-          } else {
-            echo $this->script_tag( $this->gtm_script($this->gtm_id) );
-          }
+        if ( Option::get_gtm_consent() ) {
+          echo $this->script_tag( $this->consent() );
+        }
+
+        if ( Option::get_load_delay() !== 'none' ) {
+          echo $this->script_tag($this->delay_listener(Option::get_load_delay(), $this->gtm_script($gtm_id)) );
+        } else {
+          echo $this->script_tag( $this->gtm_script($gtm_id) );
         }
       }
     }
 
+    /**
+     * Preconnect for performance improvements
+     * https://web.dev/articles/preconnect-and-dns-prefetch
+     * 
+     * @return void 
+     */
+    public function outputPreConnect() {
+      echo "<link rel='preconnect' href='https://www.googletagmanager.com' crossorigin>
+      <link rel='preconnect' href='https://policy.app.cookieinformation.com' crossorigin>";
+    }
+
     private function cookieinformation() {
-      echo "<script id='CookieConsent' src='https://policy.app.cookieinformation.com/uc.js' data-culture='{$this->language_code}' data-gcm-version='2.0' type='text/javascript'></script>";
+      $async = Option::get_async_script() ? 'async' : '';
+      echo "<script {$async} id='CookieConsent' src='https://policy.app.cookieinformation.com/uc.js' data-culture='{$this->language_code}' data-gcm-version='2.0' type='text/javascript'></script>";
     }
 
     private function delay_listener($consent, $loader_script) {

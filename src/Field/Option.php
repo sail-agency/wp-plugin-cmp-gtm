@@ -19,23 +19,30 @@ class Option
               'none' => __( 'None', 'sail-cmp-gtm' ),
               'functional' => __( 'Functional cookies', 'sail-cmp-gtm' ),
               'statistic' => __( 'Statistic cookies', 'sail-cmp-gtm' )
-            ] )
+            ] ),
+          Field::make('checkbox', 'cookieconsent_async_script', __('Load the cookie consent script asyncronously?', 'sail-cmp-gtm') )
+            ->set_option_value( 'yes' )
       ] );
 
     }
 
     public static function get_gtm_id()
     {
-        return carbon_get_theme_option( 'gtm_id' );
+        return \carbon_get_theme_option( 'gtm_id' );
     }
 
     public static function get_gtm_consent()
     {
-        return carbon_get_theme_option( 'gtm_consent' );
+        return \carbon_get_theme_option( 'gtm_consent' );
     }
 
     public static function get_load_delay()
     {
-        return carbon_get_theme_option( 'gtm_load_delay' );
+        return \carbon_get_theme_option( 'gtm_load_delay' );
+    }
+
+    public static function get_async_script()
+    {
+        return \carbon_get_theme_option( 'cookieconsent_async_script' );
     }
 }
