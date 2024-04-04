@@ -18,7 +18,8 @@ class Plugin
         add_action('plugins_loaded', [ $this, 'translation' ]);
         add_action('plugins_loaded', [ $this, 'integration' ]);
         add_action('carbon_fields_register_fields', [ $this, 'register_fields' ]);
-        add_action('wp_head', [ $this, 'header' ]);        
+        add_action('wp_head', [ $this, 'header' ]);
+        add_action('wp_head', [ $this, 'header_preconnect' ], 0);
     }
 
     public function version()
@@ -49,5 +50,10 @@ class Plugin
     public function header()
     {
       new Output\Header();
+    }
+
+    public function header_preconnect()
+    {
+        Output\Header::pre_connect();
     }
 }

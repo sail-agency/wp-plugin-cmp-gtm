@@ -36,6 +36,11 @@ class Header
       echo "<script id='CookieConsent' src='https://policy.app.cookieinformation.com/uc.js' data-culture='{$this->language_code}' data-gcm-version='2.0' type='text/javascript'></script>";
     }
 
+    public static function pre_connect() {
+      echo "<link rel='preconnect' href='https://www.googletagmanager.com' crossorigin>
+      <link rel='preconnect' href='https://policy.app.cookieinformation.com' crossorigin>";
+    }
+
     private function delay_listener($consent, $loader_script) {
       return "window.addEventListener('CookieInformationConsentGiven', function(event) {
         if (CookieInformation.getConsentGivenFor('cookie_cat_{$consent}')) {
