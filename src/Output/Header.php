@@ -18,11 +18,11 @@ class Header
       if ( ! Admin\Preview::is_preview() ) {
         $this->cookieinformation();
 
-        if( ! empty($this->gtm_id) ) {
-          if ( Option::get_gtm_consent() ) {
-            echo $this->script_tag( $this->consent() );
-          }
+        if ( Option::get_gtm_consent() ) {
+          echo $this->script_tag( $this->consent() );
+        }
 
+        if( ! empty($this->gtm_id) ) {
           if ( Option::get_load_delay() !== 'none' ) {
             echo $this->script_tag($this->delay_listener(Option::get_load_delay(), $this->gtm_script($this->gtm_id)) );
           } else {
