@@ -19,7 +19,7 @@ class Header
         $this->cookieinformation();
 
         if ( Option::get_gtm_consent() ) {
-          echo $this->script_tag( $this->consent() );
+          echo $this->script_tag( $this->consent(Option::get_wait_time()) );
         }
 
         if( ! empty($this->gtm_id) ) {
@@ -54,7 +54,7 @@ class Header
       return "<script async src='https://www.googletagmanager.com/gtag/js?id={$tag_id}'></script>";
     }
 
-    private function consent() {
+    private function consent($wait_time = 500) {
       return "window.dataLayer = window.dataLayer || [];
 
       function gtag(){ dataLayer.push(arguments); }
@@ -64,7 +64,7 @@ class Header
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
       'analytics_storage': 'denied',
-      'wait_for_update': 500
+      'wait_for_update': {$wait_time}
       });
 
       gtag('set', 'ads_data_redaction', true);";
