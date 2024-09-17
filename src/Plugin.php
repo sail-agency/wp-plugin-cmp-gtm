@@ -18,7 +18,7 @@ class Plugin
         add_action('plugins_loaded', [ $this, 'translation' ]);
         add_action('plugins_loaded', [ $this, 'integration' ]);
         add_action('carbon_fields_register_fields', [ $this, 'register_fields' ]);
-        add_action('wp_head', [ $this, 'header' ]);
+        add_action('wp_head', [ $this, 'header' ], 1);
         add_action('wp_head', [ $this, 'header_preconnect' ], 0);
     }
 
