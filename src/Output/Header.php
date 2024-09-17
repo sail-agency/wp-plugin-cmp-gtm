@@ -8,12 +8,12 @@ use Sail\CMP_GTM\Admin;
 class Header
 {
   private $language_code;
-  private $gtm_id;
+  private $gtm_ids;
 
     public function __construct()
     {
       $this->language_code = substr(get_locale(), 0, 2);
-      $this->gtm_id  = Option::get_gtm_id();
+      $this->gtm_ids  = explode(',', Option::get_gtm_id());
 
       if ( ! Admin\Preview::is_preview() ) {
         $this->cookieinformation();
@@ -22,11 +22,13 @@ class Header
           echo $this->script_tag( $this->consent(Option::get_wait_time()) );
         }
 
-        if( ! empty($this->gtm_id) ) {
-          if ( Option::get_load_delay() !== 'none' ) {
-            echo $this->script_tag($this->delay_listener(Option::get_load_delay(), $this->gtm_script($this->gtm_id)) );
-          } else {
-            echo $this->script_tag( $this->gtm_script($this->gtm_id) );
+        if( ! empty($this->gtm_ids) ) {
+          foreach($this->gtm_ids as $gtm_id) {
+            if ( Option::get_load_delay() !== 'none' ) {
+              echo $this->script_tag($this->delay_listener(Option::get_load_delay(), $this->gtm_script($gtm_id)) );
+            } else {
+              echo $this->gtm_tag($gtm_id);
+            }
           }
         }
       }
@@ -53,6 +55,14 @@ class Header
       return "var scriptElement = document.createElement('script');
       scriptElement.innerHTML = \"(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{$gtm_id}');\";
       document.head.appendChild(scriptElement);";
+    }
+
+    private function gtm_tag($gtm_id) {
+      return "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{$gtm_id}');</script>";
     }
 
     private function gtag($tag_id) {

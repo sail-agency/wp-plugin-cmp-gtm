@@ -11,7 +11,8 @@ class Option
     {
       Container::make( 'theme_options', 'GTM Settings' )
       ->add_fields( [
-          Field::make( 'text', 'gtm_id', 'GTM ID' ),
+          Field::make( 'text', 'gtm_id', 'GTM ID' )
+          ->set_help_text( __('Multiple IDs can be entered separated by comma (no spaces).', 'sail-cmp-gtm') ),
           Field::make( 'checkbox', 'gtm_consent', __('Consent mode', 'sail-cmp-gtm') )
             ->set_option_value( 'yes' ),
           Field::make( 'text', 'gtm_wait_time', __('GTM wait time', 'sail-cmp-gtm') )
