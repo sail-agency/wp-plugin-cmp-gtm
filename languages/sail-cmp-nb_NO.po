@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sail CMP & GTM 2.0.0-rc1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-plugin-cmp-gtm\n"
-"POT-Creation-Date: 2026-11-16T14:06:33+00:00\n"
+"POT-Creation-Date: 2026-11-16T14:39:21+00:00\n"
 "PO-Revision-Date: 2026-11-16 13:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -123,11 +123,21 @@ msgstr "Legg kortkoden %s på personvernsiden. Den viser en tabell over informas
 msgid "%1$s gives a link that opens the consent settings again. In menus you can add a custom link to %2$s."
 msgstr "%1$s gir en lenke som åpner samtykkeinnstillingene igjen. I menyer kan du lage en egendefinert lenke til %2$s."
 
+#: src/Field/Option.php:79
+msgid "Other scripts"
+msgstr "Andre script"
+
+#. translators: 1: example script tag, 2-4: category names, 5-6: HTML attribute names.
+#: src/Field/Option.php:82
+#, php-format
+msgid "Scripts that set cookies must be marked so they only run after consent: %1$s. Categories: %2$s, %3$s and %4$s. Embedded videos and maps: replace %5$s with %6$s."
+msgstr "Script som setter informasjonskapsler, må merkes slik at de bare kjører etter samtykke: %1$s. Kategorier: %2$s, %3$s og %4$s. Innebygde videoer og kart: bytt %5$s med %6$s."
+
 #: src/Output/Shortcode.php:40
 msgid "Cookie settings"
 msgstr "Innstillinger for informasjonskapsler"
 
-#: src/Plugin.php:71
+#: src/Plugin.php:72
 msgid "Settings"
 msgstr "Innstillinger"
 

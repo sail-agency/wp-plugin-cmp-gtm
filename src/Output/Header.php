@@ -24,7 +24,7 @@ class Header
         $this->sail_cmp();
       }
 
-      if ( Option::get_gtm_consent() ) {
+      if ( Option::get_gtm_consent() && $this->provider !== 'sail-cmp' ) {
         $this->script_tag( $this->consent(Option::get_wait_time()) );
       }
 
@@ -68,7 +68,7 @@ class Header
         echo "<link rel='preconnect' href='https://policy.app.cookieinformation.com' crossorigin>";
       }
       if( Option::get_cmp_provider() === 'sail-cmp' ) {
-        echo "<link rel='preconnect' href='https://consent.sail.no' crossorigin>";
+        echo "<link rel='preconnect' href='" . esc_url( Option::get_sail_cmp_origin() ) . "' crossorigin>";
       }
     }
 
