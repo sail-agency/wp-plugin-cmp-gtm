@@ -63,7 +63,7 @@ class Option
     private static function sail_cmp_help() : string
     {
         return sprintf(
-            '<h3>%1$s</h3><p>%2$s</p><p>%3$s</p>',
+            '<h3>%1$s</h3><p>%2$s</p><p>%3$s</p><h3>%4$s</h3><p>%5$s</p>',
             esc_html__( 'Cookie declaration and settings', 'sail-cmp' ),
             sprintf(
                 /* translators: %s: the [sail_cmp_declaration] shortcode. */
@@ -75,6 +75,17 @@ class Option
                 esc_html__( '%1$s gives a link that opens the consent settings again. In menus you can add a custom link to %2$s.', 'sail-cmp' ),
                 '<code>[sail_cmp_settings_link]</code>',
                 '<code>#sail-cmp-open</code>'
+            ),
+            esc_html__( 'Other scripts', 'sail-cmp' ),
+            sprintf(
+                /* translators: 1: example script tag, 2-4: category names, 5-6: HTML attribute names. */
+                esc_html__( 'Scripts that set cookies must be marked so they only run after consent: %1$s. Categories: %2$s, %3$s and %4$s. Embedded videos and maps: replace %5$s with %6$s.', 'sail-cmp' ),
+                '<code>&lt;script type="text/plain" data-sail-category="marketing"&gt;</code>',
+                '<code>functional</code>',
+                '<code>analytics</code>',
+                '<code>marketing</code>',
+                '<code>src</code>',
+                '<code>data-sail-src</code>'
             )
         );
     }
