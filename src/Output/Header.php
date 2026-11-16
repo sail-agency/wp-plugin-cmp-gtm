@@ -24,7 +24,7 @@ class Header
         $this->sail_cmp();
       }
 
-      if ( Option::get_gtm_consent() ) {
+      if ( Option::get_gtm_consent() && $this->provider !== 'sail-cmp' ) {
         $this->script_tag( $this->consent(Option::get_wait_time()) );
       }
 
