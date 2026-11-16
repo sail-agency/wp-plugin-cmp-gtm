@@ -72,12 +72,46 @@ class Header
       }
     }
 
+    /**
+     * Loads GTM only once the visitor has consented to the chosen category.
+     */
     private function delay_listener($consent, $loader_script) {
+      if ( $this->provider === 'sail-cmp' ) {
+        return $this->sail_cmp_delay_listener($consent, $loader_script);
+      }
+
       return "window.addEventListener('CookieInformationConsentGiven', function(event) {
         if (CookieInformation.getConsentGivenFor('cookie_cat_{$consent}')) {
           {$loader_script}
         }
       }, false);";
+    }
+
+    /**
+     * Sail CMP: a returning visitor's stored choice is read from SailCMP.getConsent() right away
+     * (the Sail script runs first in <head>). A new or changed choice arrives with the
+     * sail-cmp:change event, which fires together with the sail_consent_update dataLayer event.
+     */
+    private function sail_cmp_delay_listener($consent, $loader_script) {
+      // Sail CMP calls the statistics category "analytics".
+      $category = $consent === 'statistic' ? 'analytics' : $consent;
+
+      return "(function() {
+        var loaded = false;
+        function load(state) {
+          if (loaded || !state || !state.categories || !state.categories['{$category}']) {
+            return;
+          }
+          loaded = true;
+          {$loader_script}
+        }
+        if (window.SailCMP) {
+          load(window.SailCMP.getConsent());
+        }
+        window.addEventListener('sail-cmp:change', function(event) {
+          load(event.detail);
+        }, false);
+      })();";
     }
 
     private function gtm_script($gtm_id) {
