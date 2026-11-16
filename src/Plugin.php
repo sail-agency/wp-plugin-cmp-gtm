@@ -14,12 +14,18 @@ class Plugin
     {
         $this->plugin_version = $plugin_data['Version'];
 
+        new Update\Updater( plugin_basename( CMP_GTM_PLUGIN_DIR . 'index.php' ) );
+
         add_action('after_setup_theme', [ $this, 'boot' ]);
         add_action('plugins_loaded', [ $this, 'translation' ]);
         add_action('plugins_loaded', [ $this, 'integration' ]);
         add_action('carbon_fields_register_fields', [ $this, 'register_fields' ]);
-        add_action('wp_head', [ $this, 'header' ], 1);
-        add_action('wp_head', [ $this, 'header_preconnect' ], 0);
+        add_action('wp_head', [ $this, 'header' ], PHP_INT_MIN);
+        add_action('wp_head', [ $this, 'header_preconnect' ], PHP_INT_MIN);
+
+        new Admin\Notice();
+
+        add_filter('plugin_action_links_' . plugin_basename(CMP_GTM_PLUGIN_DIR . 'index.php'), [ $this, 'plugin_action_links' ]);
     }
 
     public function version()
@@ -29,7 +35,7 @@ class Plugin
 
     public function translation()
     {
-        load_plugin_textdomain('sail-cmp-gtm', false, CMP_GTM_PLUGIN_DIR . '/languages/');
+        load_plugin_textdomain( 'sail-cmp', false, dirname( plugin_basename( CMP_GTM_PLUGIN_DIR . 'index.php' ) ) . '/languages' );
     }
 
     public function integration()
@@ -45,15 +51,25 @@ class Plugin
     public function register_fields()
     {
         new Field\Option();
+        new Output\Shortcode();
     }
 
     public function header()
     {
-      new Output\Header();
+        if( ! Admin\Preview::is_preview() || ! is_feed() ) {
+            new Output\Header();
+        }
     }
 
     public function header_preconnect()
     {
         Output\Header::pre_connect();
+    }
+
+    public function plugin_action_links($links)
+    {
+        $settings_link = '<a href="options-general.php?page=sail-cmp">' . __('Settings', 'sail-cmp') . '</a>';
+        array_unshift($links, $settings_link);
+        return $links;
     }
 }
