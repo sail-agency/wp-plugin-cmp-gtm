@@ -51,7 +51,12 @@ class Option
 
     public static function get_gtm_id()
     {
-        return carbon_get_theme_option( 'gtm_id' );
+        $gtm_ids = carbon_get_theme_option( 'gtm_id' );
+        if ( ! $gtm_ids ) {
+            return null;
+        }
+        $gtm_ids = explode( ',', $gtm_ids );
+        return $gtm_ids;
     }
 
     public static function get_gtm_consent()

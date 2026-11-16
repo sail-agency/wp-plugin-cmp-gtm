@@ -13,7 +13,7 @@ class Header
     public function __construct()
     {
       $this->language_code = substr(get_locale(), 0, 2);
-      $this->gtm_ids  = explode(',', Option::get_gtm_id());
+      $this->gtm_ids  = Option::get_gtm_id();
       $this->provider = Option::get_cmp_provider();
 
       if ( $this->provider === 'cookieinformation' ) {
