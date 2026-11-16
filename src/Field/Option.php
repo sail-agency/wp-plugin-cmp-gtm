@@ -29,6 +29,14 @@ class Option
               'value' => 'sail-cmp'
             ]
           ] ),
+        Field::make( 'html', 'sail_cmp_help' )
+          ->set_html( self::sail_cmp_help() )
+          ->set_conditional_logic( [
+            [
+              'field' => 'cmp_provider',
+              'value' => 'sail-cmp'
+            ]
+          ] ),
         Field::make( 'text', 'gtm_id', 'GTM ID' )
         ->set_help_text( __('Multiple IDs can be entered separated by comma (no spaces).', 'sail-cmp') ),
         Field::make( 'checkbox', 'gtm_consent', __('Consent mode', 'sail-cmp') )
@@ -47,6 +55,28 @@ class Option
           ] )
       ] );
 
+    }
+
+    /**
+     * How to add the cookie declaration and the settings link, shown when Sail CMP is the provider.
+     */
+    private static function sail_cmp_help() : string
+    {
+        return sprintf(
+            '<h3>%1$s</h3><p>%2$s</p><p>%3$s</p>',
+            esc_html__( 'Cookie declaration and settings', 'sail-cmp' ),
+            sprintf(
+                /* translators: %s: the [sail_cmp_declaration] shortcode. */
+                esc_html__( 'Add the shortcode %s to the privacy page. It shows a table of the cookies, fetched from Sail.', 'sail-cmp' ),
+                '<code>[sail_cmp_declaration]</code>'
+            ),
+            sprintf(
+                /* translators: 1: the [sail_cmp_settings_link] shortcode, 2: the #sail-cmp-open link target. */
+                esc_html__( '%1$s gives a link that opens the consent settings again. In menus you can add a custom link to %2$s.', 'sail-cmp' ),
+                '<code>[sail_cmp_settings_link]</code>',
+                '<code>#sail-cmp-open</code>'
+            )
+        );
     }
 
     public static function get_gtm_id()
