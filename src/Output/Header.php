@@ -3,7 +3,6 @@
 namespace Sail\CMP_GTM\Output;
 
 use Sail\CMP_GTM\Field\Option;
-use Sail\CMP_GTM\Admin;
 
 class Header
 {

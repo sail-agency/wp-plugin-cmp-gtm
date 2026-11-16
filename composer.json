@@ -24,5 +24,10 @@
     "allow-plugins": {
       "composer/installers": true
     }
-  }
+  },
+  "scripts": {
+  "i18n:pot": "wp i18n make-pot . languages/sail-cmp.pot --exclude=vendor,docker,wp_install --skip-js",
+  "i18n:mo": "wp i18n make-mo languages",
+  "i18n": ["@i18n:pot", "@i18n:mo"]
+}
 }

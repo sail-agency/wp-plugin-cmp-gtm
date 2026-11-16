@@ -7,7 +7,8 @@ Version: 2.0.0-rc1
 Requires PHP: 7.4
 Requires at least: 5.8
 Author URI: https://sail.no/
-Text Domain: sail-cmp-gtm
+Text Domain: sail-cmp
+Domain Path: /languages
 */
 
 namespace Sail\CMP_GTM;

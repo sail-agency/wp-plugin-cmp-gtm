@@ -29,7 +29,7 @@ class Plugin
 
     public function translation()
     {
-        load_plugin_textdomain('sail-cmp-gtm', false, CMP_GTM_PLUGIN_DIR . '/languages/');
+        load_plugin_textdomain( 'sail-cmp', false, dirname( plugin_basename( CMP_GTM_PLUGIN_DIR . 'index.php' ) ) . '/languages' );
     }
 
     public function integration()
@@ -45,6 +45,7 @@ class Plugin
     public function register_fields()
     {
         new Field\Option();
+        new Output\Shortcode();
     }
 
     public function header()

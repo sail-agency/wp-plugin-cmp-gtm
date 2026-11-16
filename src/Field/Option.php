@@ -12,16 +12,16 @@ class Option
       Container::make( 'theme_options', 'Sail CMP' )
       ->set_page_parent( 'options-general.php' )
       ->add_fields( [
-        Field::make( 'select', 'cmp_provider', __('CMP Provider', 'sail-cmp-gtm') )
+        Field::make( 'select', 'cmp_provider', __('CMP Provider', 'sail-cmp') )
           ->add_options( [
-            'none' => __( 'None', 'sail-cmp-gtm' ),
-            'sail-cmp' => __( 'Sail CMP', 'sail-cmp-gtm' ),
-            'cookieinformation' => __( 'Cookie Information', 'sail-cmp-gtm' ),
-            // 'cookieyes' => __( 'CookieYes', 'sail-cmp-gtm' ),
-            // 'custom' => __( 'Custom', 'sail-cmp-gtm' )
+            'none' => __( 'None', 'sail-cmp' ),
+            'sail-cmp' => __( 'Sail CMP', 'sail-cmp' ),
+            'cookieinformation' => __( 'Cookie Information', 'sail-cmp' ),
+            // 'cookieyes' => __( 'CookieYes', 'sail-cmp' ),
+            // 'custom' => __( 'Custom', 'sail-cmp' )
           ] ),
-        Field::make( 'text', 'sail_cmp_site_id', __('Sail CMP Site ID', 'sail-cmp-gtm') )
-          ->set_help_text( __('The site ID for Sail CMP.', 'sail-cmp-gtm') )
+        Field::make( 'text', 'sail_cmp_site_id', __('Sail CMP Site ID', 'sail-cmp') )
+          ->set_help_text( __('The site ID for Sail CMP.', 'sail-cmp') )
           ->set_conditional_logic( [
             [
               'field' => 'cmp_provider',
@@ -29,20 +29,20 @@ class Option
             ]
           ] ),
         Field::make( 'text', 'gtm_id', 'GTM ID' )
-        ->set_help_text( __('Multiple IDs can be entered separated by comma (no spaces).', 'sail-cmp-gtm') ),
-        Field::make( 'checkbox', 'gtm_consent', __('Consent mode', 'sail-cmp-gtm') )
+        ->set_help_text( __('Multiple IDs can be entered separated by comma (no spaces).', 'sail-cmp') ),
+        Field::make( 'checkbox', 'gtm_consent', __('Consent mode', 'sail-cmp') )
           ->set_option_value( 'yes' ),
-        Field::make( 'text', 'gtm_wait_time', __('GTM wait time', 'sail-cmp-gtm') )
+        Field::make( 'text', 'gtm_wait_time', __('GTM wait time', 'sail-cmp') )
           ->set_attribute( 'type', 'number' )
           ->set_attribute( 'min', 0 )
           ->set_attribute( 'step', 100 )
           ->set_attribute( 'max', 5000 )
           ->set_default_value( 500 ),  
-        Field::make( 'select', 'gtm_load_delay', __('GTM load delay', 'sail-cmp-gtm') )
+        Field::make( 'select', 'gtm_load_delay', __('GTM load delay', 'sail-cmp') )
           ->add_options( [
-            'none' => __( 'None', 'sail-cmp-gtm' ),
-            'functional' => __( 'Functional cookies', 'sail-cmp-gtm' ),
-            'statistic' => __( 'Statistic cookies', 'sail-cmp-gtm' )
+            'none' => __( 'None', 'sail-cmp' ),
+            'functional' => __( 'Functional cookies', 'sail-cmp' ),
+            'statistic' => __( 'Statistic cookies', 'sail-cmp' )
           ] )
       ] );
 
