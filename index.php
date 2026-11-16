@@ -1,10 +1,12 @@
 <?php
 /*
-Plugin Name: CMP & GTM loader
-Description: GDPR friendlier GTM loader.
+Plugin Name: Sail CMP & GTM
+Description: Sail CMP & GDPR friendly GTM loader.
 Author: Are Kristoffer Lamo
-Version: 1.4.0
-Author URI: https://sail.no/folk/are-kristoffer-lamo/
+Version: 2.0.0-rc1
+Requires PHP: 7.4
+Requires at least: 5.8
+Author URI: https://sail.no/
 Text Domain: sail-cmp-gtm
 */
 

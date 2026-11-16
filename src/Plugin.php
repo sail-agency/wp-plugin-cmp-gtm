@@ -18,8 +18,8 @@ class Plugin
         add_action('plugins_loaded', [ $this, 'translation' ]);
         add_action('plugins_loaded', [ $this, 'integration' ]);
         add_action('carbon_fields_register_fields', [ $this, 'register_fields' ]);
-        add_action('wp_head', [ $this, 'header' ], 1);
-        add_action('wp_head', [ $this, 'header_preconnect' ], 0);
+        add_action('wp_head', [ $this, 'header' ], PHP_INT_MIN);
+        add_action('wp_head', [ $this, 'header_preconnect' ], PHP_INT_MIN);
     }
 
     public function version()
@@ -49,7 +49,9 @@ class Plugin
 
     public function header()
     {
-      new Output\Header();
+        if( ! Admin\Preview::is_preview() || ! is_feed() ) {
+            new Output\Header();
+        }
     }
 
     public function header_preconnect()
