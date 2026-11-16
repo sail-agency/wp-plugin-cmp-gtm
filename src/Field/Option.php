@@ -10,6 +10,7 @@ class Option
     public function __construct()
     {
       Container::make( 'theme_options', 'Sail CMP' )
+      ->set_page_file( 'sail-cmp' )
       ->set_page_parent( 'options-general.php' )
       ->add_fields( [
         Field::make( 'select', 'cmp_provider', __('CMP Provider', 'sail-cmp') )
@@ -82,9 +83,18 @@ class Option
         return $site_id;
     }
 
-    public static function get_sail_cmp_url( string $site_id) {
+    /**
+     * Where the script and the plugin updates are served from. Can be changed in wp-config.php:
+     * define( 'SAIL_CMP_ORIGIN', 'https://sail-cmp.pages.dev' );
+     *
+     * @return string Origin without a trailing slash.
+     */
+    public static function get_sail_cmp_origin() {
       $origin = defined( 'SAIL_CMP_ORIGIN' ) ? (string) SAIL_CMP_ORIGIN : 'https://consent.sail.no';
-	    $origin = untrailingslashit( (string) apply_filters( 'sail_cmp_origin', $origin ) );
-      return apply_filters( 'sail_cmp_script_url', $origin . '/' . $site_id . '.js', $site_id );
+      return untrailingslashit( (string) apply_filters( 'sail_cmp_origin', $origin ) );
+    }
+
+    public static function get_sail_cmp_url( string $site_id) {
+      return apply_filters( 'sail_cmp_script_url', self::get_sail_cmp_origin() . '/' . $site_id . '.js', $site_id );
     }
 }
