@@ -13,6 +13,9 @@ jobs:
     - uses: actions/checkout@v7
     
     # PHP
+    - name: PHP syntax check
+      run: find index.php src -name '*.php' -print0 | xargs -0 -n1 php -l
+
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
 

@@ -4,7 +4,7 @@ Plugin Name: Sail CMP & GTM
 Description: Sail CMP & GDPR friendly GTM loader.
 Author: Are Kristoffer Lamo
 Version: 2.0.0
-Requires PHP: 7.4
+Requires PHP: 8.1
 Requires at least: 5.8
 Author URI: https://sail.no/
 Text Domain: sail-cmp
