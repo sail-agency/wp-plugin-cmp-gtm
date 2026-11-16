@@ -1,0 +1,136 @@
+# Copyright (C) 2026 Are Kristoffer Lamo
+# This file is distributed under the same license as the Sail CMP & GTM plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Sail CMP & GTM 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-plugin-cmp-gtm\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-16T14:06:33+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: sail-cmp\n"
+
+#. Plugin Name of the plugin
+#: index.php
+msgid "Sail CMP & GTM"
+msgstr ""
+
+#. Description of the plugin
+#: index.php
+msgid "Sail CMP & GDPR friendly GTM loader."
+msgstr ""
+
+#. Author of the plugin
+#: index.php
+msgid "Are Kristoffer Lamo"
+msgstr ""
+
+#. Author URI of the plugin
+#: index.php
+msgid "https://sail.no/"
+msgstr ""
+
+#: src/Admin/Notice.php:29
+msgid "No CMP provider is selected, so the site has no consent banner."
+msgstr ""
+
+#: src/Admin/Notice.php:30
+msgid "Choose a CMP provider below."
+msgstr ""
+
+#: src/Admin/Notice.php:31
+msgid "Choose a CMP provider"
+msgstr ""
+
+#: src/Admin/Notice.php:33
+msgid "Sail CMP is not active yet, so the site has no consent banner."
+msgstr ""
+
+#: src/Admin/Notice.php:34
+msgid "Fill in the site ID you got from Sail below."
+msgstr ""
+
+#: src/Admin/Notice.php:35
+msgid "Fill in the site ID"
+msgstr ""
+
+#: src/Field/Option.php:16
+msgid "CMP Provider"
+msgstr ""
+
+#: src/Field/Option.php:18
+#: src/Field/Option.php:52
+msgid "None"
+msgstr ""
+
+#: src/Field/Option.php:19
+msgid "Sail CMP"
+msgstr ""
+
+#: src/Field/Option.php:20
+msgid "Cookie Information"
+msgstr ""
+
+#: src/Field/Option.php:24
+msgid "Sail CMP Site ID"
+msgstr ""
+
+#: src/Field/Option.php:25
+msgid "The site ID for Sail CMP."
+msgstr ""
+
+#: src/Field/Option.php:41
+msgid "Multiple IDs can be entered separated by comma (no spaces)."
+msgstr ""
+
+#: src/Field/Option.php:42
+msgid "Consent mode"
+msgstr ""
+
+#: src/Field/Option.php:44
+msgid "GTM wait time"
+msgstr ""
+
+#: src/Field/Option.php:50
+msgid "GTM load delay"
+msgstr ""
+
+#: src/Field/Option.php:53
+msgid "Functional cookies"
+msgstr ""
+
+#: src/Field/Option.php:54
+msgid "Statistic cookies"
+msgstr ""
+
+#: src/Field/Option.php:67
+msgid "Cookie declaration and settings"
+msgstr ""
+
+#. translators: %s: the [sail_cmp_declaration] shortcode.
+#: src/Field/Option.php:70
+#, php-format
+msgid "Add the shortcode %s to the privacy page. It shows a table of the cookies, fetched from Sail."
+msgstr ""
+
+#. translators: 1: the [sail_cmp_settings_link] shortcode, 2: the #sail-cmp-open link target.
+#: src/Field/Option.php:75
+#, php-format
+msgid "%1$s gives a link that opens the consent settings again. In menus you can add a custom link to %2$s."
+msgstr ""
+
+#: src/Output/Shortcode.php:40
+msgid "Cookie settings"
+msgstr ""
+
+#: src/Plugin.php:71
+msgid "Settings"
+msgstr ""
+
+#: src/Update/Updater.php:186
+msgid "Could not prepare the Sail CMP update."
+msgstr ""
