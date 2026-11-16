@@ -4,7 +4,7 @@ Tags: cookies, samtykke, consent mode, gdpr, google tag manager
 Requires at least: 5.8
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: Proprietary
 
 Samtykkebanner for informasjonskapsler med Google Consent Mode v2 og GDPR-vennlig lasting av Google Tag Manager, driftet av Sail.
@@ -29,6 +29,11 @@ Oppdateringer kommer fra Sail (consent.sail.no), ikke fra wordpress.org.
 
 
 == Changelog ==
+
+= 2.0.1 =
+* Site-ID overføres automatisk.
+* Standard samtykke (Consent Mode) skrives ikke av pluginen når Sail CMP er valgt, siden Sail CMP setter det selv.
+* Hjelpetekst for andre script på innstillingssiden, og innstillingene fjernes når pluginen slettes.
 
 = 2.0.0 =
 * Valg av CMP-leverandør (Sail CMP eller Cookie Information).
