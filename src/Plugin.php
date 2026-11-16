@@ -14,6 +14,7 @@ class Plugin
     {
         $this->plugin_version = $plugin_data['Version'];
 
+        new Update\Migration();
         new Update\Updater( plugin_basename( CMP_GTM_PLUGIN_DIR . 'index.php' ) );
 
         add_action('after_setup_theme', [ $this, 'boot' ]);

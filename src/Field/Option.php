@@ -112,10 +112,15 @@ class Option
     public static function get_sail_cmp_site_id()
     {
         $site_id = carbon_get_theme_option( 'sail_cmp_site_id' );
-        if ( ! preg_match( '/^[a-z0-9]([a-z0-9-]{0,48}[a-z0-9])?$/', $site_id ) ) {
-            $site_id = '';
-        }
-        return $site_id;
+        return self::is_valid_sail_cmp_site_id( $site_id ) ? $site_id : '';
+    }
+
+    /**
+     * Same rule as siteId in Sail CMP's site schema.
+     */
+    public static function is_valid_sail_cmp_site_id( $site_id ) : bool
+    {
+        return is_string( $site_id ) && 1 === preg_match( '/^[a-z0-9]([a-z0-9-]{0,48}[a-z0-9])?$/', $site_id );
     }
 
     /**
