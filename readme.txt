@@ -30,6 +30,11 @@ Oppdateringer kommer fra Sail (consent.sail.no), ikke fra wordpress.org.
 
 == Changelog ==
 
+= 2.1.0 =
+* Innebygd innhold og script holdes tilbake til besøkeren har samtykket. Gjelder innhold, widgeter og script lagt til av tema og utvidelser.
+* Videoer i Elementor blokkeres også.
+* Blokkeringen kan slås av under Innstillinger → Sail CMP.
+
 = 2.0.2 =
 * Forsinket lasting av GTM støtter Sail CMP: GTM lastes først når besøkeren har samtykket til valgt kategori.
 
