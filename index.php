@@ -6,6 +6,7 @@ Author: Sail AS
 Version: 2.1.0
 Requires PHP: 8.1
 Requires at least: 5.8
+Tested up to: 7.1.5
 Author URI: https://sail.no/
 Text Domain: sail-cmp
 Domain Path: /languages
