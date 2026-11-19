@@ -4,7 +4,7 @@ Tags: cookies, samtykke, consent mode, gdpr, google tag manager
 Requires at least: 5.8
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.0.2
+Stable tag: 2.1.0
 License: Proprietary
 
 Samtykkebanner for informasjonskapsler med Google Consent Mode v2 og GDPR-vennlig lasting av Google Tag Manager, driftet av Sail.
