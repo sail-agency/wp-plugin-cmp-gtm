@@ -1,14 +1,14 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * A third-party service whose embeds and scripts must wait for consent.
  *
- * Add a service by creating a class in this folder that extends Service and listing it in
- * Blocker::services() (or through the "sail/cmp_gtm/filter/services" filter).
+ * Add a provider by creating a class in this folder that extends Provider and listing it in
+ * Blocker::providers() (or through the "sail/cmp_gtm/filter/providers" filter).
  */
-abstract class Service
+abstract class Provider
 {
     /**
      * Short identifier, e.g. "youtube". Used in filters.

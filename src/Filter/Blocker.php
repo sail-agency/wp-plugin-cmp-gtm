@@ -2,94 +2,115 @@
 
 namespace Sail\CMP_GTM\Filter;
 
+use Sail\CMP_GTM\Admin\Preview;
 use Sail\CMP_GTM\Field\Option;
 
 /**
- * Holds back embeds and scripts from third-party services until the visitor has consented,
+ * Holds back embeds and scripts from third-party providers until the visitor has consented,
  * using the markup Sail CMP looks for:
  *
  *   <iframe src="…">    becomes  <iframe data-sail-src="…" data-sail-category="marketing">
  *   <script src="…">    becomes  <script type="text/plain" data-sail-category="marketing" src="…">
  *
  * Sail CMP shows a placeholder in blocked iframes and activates everything once the category
- * is accepted. The whole page is filtered, so embeds in content, widgets and templates are covered.
+ * is accepted.
+ *
+ * This class does the rewriting. Where it is applied:
+ *   Content  post content (blocks, shortcodes, oEmbeds, Elementor)
+ *   Widget   text, custom HTML and block widgets
+ *   Asset    scripts added with wp_enqueue_script()
  */
 class Blocker
 {
-    /** @var Service[]|null */
-    private $services = null;
+    public const CATEGORIES = [ 'functional', 'analytics', 'marketing' ];
+
+    /** @var Provider\Provider[]|null */
+    private $providers = null;
+
+    /** @var bool|null */
+    private $enabled = null;
 
     public function __construct()
     {
-        add_action( 'template_redirect', [ $this, 'start' ], 0 );
+        new Content( $this );
+        new Widget( $this );
+        new Asset( $this );
     }
 
     /**
-     * The services to filter. One class per service in this folder.
+     * The providers to block. One class per provider in Provider/.
      *
-     * @return Service[]
+     * @return Provider\Provider[]
      */
-    public function services() : array
+    public function providers() : array
     {
-        if ( null === $this->services ) {
-            $services = apply_filters( 'sail/cmp_gtm/filter/services', [
-                new YouTube(),
-                new Vimeo(),
-                new GoogleMaps(),
-                new Spotify(),
-                new SoundCloud(),
-                new Facebook(),
-                new Instagram(),
-                new X(),
-                new TikTok(),
+        if ( null === $this->providers ) {
+            $providers = apply_filters( 'sail/cmp_gtm/filter/providers', [
+                new Provider\YouTube(),
+                new Provider\Vimeo(),
+                new Provider\GoogleMaps(),
+                new Provider\Spotify(),
+                new Provider\SoundCloud(),
+                new Provider\Facebook(),
+                new Provider\Instagram(),
+                new Provider\X(),
+                new Provider\TikTok(),
             ] );
 
-            $this->services = array_values( array_filter( (array) $services, function ( $service ) {
-                return $service instanceof Service;
+            $this->providers = array_values( array_filter( (array) $providers, function ( $provider ) {
+                return $provider instanceof Provider\Provider;
             } ) );
         }
 
-        return $this->services;
+        return $this->providers;
     }
 
     /**
      * Only on normal front-end pages, and only when the Sail CMP script is there to unblock again.
+     * Not in previews and page builder editors, where editors need to see the content.
      */
     public function is_enabled() : bool
     {
+        if ( null !== $this->enabled ) {
+            return $this->enabled;
+        }
+
         $enabled = Option::is_sail_cmp_filter_enabled()
-            && ! is_admin()
+            && ! Preview::is_preview()
             && ! is_feed()
             && ! is_robots()
-            && ! is_customize_preview()
             && ! wp_doing_ajax()
             && ! ( defined( 'REST_REQUEST' ) && REST_REQUEST );
 
-        return (bool) apply_filters( 'sail/cmp_gtm/filter/enabled', $enabled );
-    }
+        $enabled = (bool) apply_filters( 'sail/cmp_gtm/filter/enabled', $enabled );
 
-    public function start()
-    {
-        if ( $this->is_enabled() ) {
-            ob_start( [ $this, 'filter' ] );
+        // The answer depends on the main query, so it is only kept once that has run.
+        if ( did_action( 'wp' ) ) {
+            $this->enabled = $enabled;
         }
+
+        return $enabled;
     }
 
     /**
-     * Rewrites matching iframes and scripts in a page of HTML.
+     * Rewrites matching iframes and scripts in a piece of HTML.
      *
-     * @param string $html
-     * @return string
+     * @param mixed $html
+     * @return mixed The same type as given.
      */
     public function filter( $html )
     {
-        if ( ! is_string( $html ) || false === stripos( $html, '<html' ) ) {
+        if ( ! is_string( $html ) || ( false === stripos( $html, '<iframe' ) && false === stripos( $html, '<script' ) ) ) {
+            return $html;
+        }
+
+        if ( ! $this->is_enabled() ) {
             return $html;
         }
 
         $filtered = preg_replace_callback( '/<(iframe|script)\b[^>]*>/i', [ $this, 'filter_tag' ], $html );
 
-        // preg returns null on failure (e.g. backtrack limit): leave the page as it was.
+        // preg returns null on failure (e.g. backtrack limit): leave the HTML as it was.
         return null === $filtered ? $html : $filtered;
     }
 
@@ -109,18 +130,18 @@ class Blocker
             return $tag;
         }
 
-        $url     = isset( $src[3] ) && '' !== $src[3] ? $src[3] : $src[2];
-        $service = $this->service_for( $url );
-        if ( ! $service ) {
+        $url      = isset( $src[3] ) && '' !== $src[3] ? $src[3] : $src[2];
+        $provider = $this->provider_for( $url );
+        if ( ! $provider ) {
             return $tag;
         }
 
-        $category = (string) apply_filters( 'sail/cmp_gtm/filter/category', $service->category(), $service->id(), $url );
-        if ( ! in_array( $category, [ 'functional', 'analytics', 'marketing' ], true ) ) {
+        $category = (string) apply_filters( 'sail/cmp_gtm/filter/category', $provider->category(), $provider->id(), $url );
+        if ( ! in_array( $category, self::CATEGORIES, true ) ) {
             return $tag;
         }
 
-        $marker = ' data-sail-category="' . esc_attr( $category ) . '" data-sail-service="' . esc_attr( $service->id() ) . '"';
+        $marker = ' data-sail-category="' . esc_attr( $category ) . '" data-sail-provider="' . esc_attr( $provider->id() ) . '"';
 
         if ( 'iframe' === strtolower( $match[1] ) ) {
             // src -> data-sail-src, so the browser does not load it.
@@ -142,13 +163,13 @@ class Blocker
     }
 
     /**
-     * @return Service|null
+     * @return Provider\Provider|null
      */
-    private function service_for( string $url )
+    private function provider_for( string $url )
     {
-        foreach ( $this->services() as $service ) {
-            if ( $service->matches( $url ) ) {
-                return $service;
+        foreach ( $this->providers() as $provider ) {
+            if ( $provider->matches( $url ) ) {
+                return $provider;
             }
         }
 

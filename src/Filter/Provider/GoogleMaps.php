@@ -1,11 +1,11 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * Google Maps: embedded maps (google.com/maps/embed) and the Maps JavaScript API.
  */
-class GoogleMaps extends Service
+class GoogleMaps extends Provider
 {
     public function id() : string
     {

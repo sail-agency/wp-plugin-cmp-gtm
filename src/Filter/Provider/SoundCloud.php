@@ -1,11 +1,11 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * SoundCloud players (w.soundcloud.com iframes).
  */
-class SoundCloud extends Service
+class SoundCloud extends Provider
 {
     public function id() : string
     {

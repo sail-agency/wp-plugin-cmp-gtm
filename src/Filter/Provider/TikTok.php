@@ -1,15 +1,15 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
- * Instagram posts (the embed.js script and embed iframes).
+ * TikTok videos (embed.js and embed iframes).
  */
-class Instagram extends Service
+class TikTok extends Provider
 {
     public function id() : string
     {
-        return 'instagram';
+        return 'tiktok';
     }
 
     public function category() : string
@@ -19,11 +19,11 @@ class Instagram extends Service
 
     protected function domains() : array
     {
-        return [ 'instagram.com' ];
+        return [ 'tiktok.com' ];
     }
 
     protected function paths() : array
     {
-        return [ '#/embed(\\.js|/|$)#' ];
+        return [ '#^/embed#', '#^/player/#' ];
     }
 }

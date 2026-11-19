@@ -1,11 +1,11 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * YouTube videos (iframe embeds and the iframe API script).
  */
-class YouTube extends Service
+class YouTube extends Provider
 {
     public function id() : string
     {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * Spotify players (open.spotify.com/embed iframes and the embed script).
  */
-class Spotify extends Service
+class Spotify extends Provider
 {
     public function id() : string
     {

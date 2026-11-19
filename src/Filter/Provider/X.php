@@ -1,11 +1,11 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * X (Twitter): embedded posts and timelines (widgets.js and its iframes).
  */
-class X extends Service
+class X extends Provider
 {
     public function id() : string
     {

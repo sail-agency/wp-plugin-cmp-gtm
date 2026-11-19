@@ -1,11 +1,11 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * Vimeo videos (player.vimeo.com iframes and the player script).
  */
-class Vimeo extends Service
+class Vimeo extends Provider
 {
     public function id() : string
     {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Sail\CMP_GTM\Filter;
+namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * Facebook: page, post and video plugins (iframes), the SDK and the pixel script.
  */
-class Facebook extends Service
+class Facebook extends Provider
 {
     public function id() : string
     {
