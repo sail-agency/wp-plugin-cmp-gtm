@@ -1,9 +1,5 @@
 === Sail CMP & GTM ===
 Contributors: sail
-Tags: cookies, samtykke, consent mode, gdpr, google tag manager
-Requires at least: 5.8
-Tested up to: 6.8
-Requires PHP: 7.4
 Stable tag: 2.1.0
 License: Proprietary
 
