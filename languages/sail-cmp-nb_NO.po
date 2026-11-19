@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sail CMP & GTM 2.0.0-rc1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-plugin-cmp-gtm\n"
-"POT-Creation-Date: 2026-11-16T14:39:21+00:00\n"
+"POT-Creation-Date: 2026-11-19T11:52:36+00:00\n"
 "PO-Revision-Date: 2026-11-16 13:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,7 +27,7 @@ msgstr "Sail CMP og GDPR-kompatibel GTM-laster."
 
 #. Author of the plugin
 #: index.php
-msgid "Are Kristoffer Lamo"
+msgid "Sail AS"
 msgstr ""
 
 #. Author URI of the plugin
@@ -63,7 +63,7 @@ msgstr "Fyll inn site-ID"
 msgid "CMP Provider"
 msgstr "CMP-leverandør"
 
-#: src/Field/Option.php:18 src/Field/Option.php:52
+#: src/Field/Option.php:18 src/Field/Option.php:75
 msgid "None"
 msgstr "Ingen"
 
@@ -83,61 +83,73 @@ msgstr "Sail CMP-nettsteds-ID"
 msgid "The site ID for Sail CMP."
 msgstr "Nettsteds-ID-en for Sail CMP."
 
-#: src/Field/Option.php:41
+#: src/Field/Option.php:40
+msgid "Turn off blocking of embeds and scripts"
+msgstr "Slå av blokkering av innebygd innhold og script"
+
+#: src/Field/Option.php:42
+msgid "By default, embeds and scripts from YouTube, Vimeo, Google Maps, Spotify, SoundCloud, Facebook, Instagram, X and TikTok are held back until the visitor has consented. Check this to turn that off completely."
+msgstr "Som standard holdes innebygd innhold og script fra YouTube, Vimeo, Google Maps, Spotify, SoundCloud, Facebook, Instagram, X og TikTok tilbake til besøkeren har samtykket. Kryss av her for å slå dette helt av."
+
+#: src/Field/Option.php:50
 msgid "Multiple IDs can be entered separated by comma (no spaces)."
 msgstr "Du kan oppgi flere ID-er, atskilt med komma (uten mellomrom)."
 
-#: src/Field/Option.php:42
+#: src/Field/Option.php:51
 msgid "Consent mode"
 msgstr "Samtykkemodus"
 
-#: src/Field/Option.php:44
+#: src/Field/Option.php:60
 msgid "GTM wait time"
 msgstr "GTM-ventetid"
 
-#: src/Field/Option.php:50
+#: src/Field/Option.php:73
 msgid "GTM load delay"
 msgstr "GTM innlastinga-ventetid"
 
-#: src/Field/Option.php:53
+#: src/Field/Option.php:76
 msgid "Functional cookies"
 msgstr "Funksjonelle informasjonskapsler"
 
-#: src/Field/Option.php:54
+#: src/Field/Option.php:77
 msgid "Statistic cookies"
 msgstr "Statistiske informasjonskapsler"
 
-#: src/Field/Option.php:67
+#: src/Field/Option.php:90
 msgid "Cookie declaration and settings"
 msgstr "Cookieerklæring og innstillinger"
 
 #. translators: %s: the [sail_cmp_declaration] shortcode.
-#: src/Field/Option.php:70
+#: src/Field/Option.php:93
 #, php-format
 msgid "Add the shortcode %s to the privacy page. It shows a table of the cookies, fetched from Sail."
 msgstr "Legg kortkoden %s på personvernsiden. Den viser en tabell over informasjonskapslene, hentet fra Sail."
 
 #. translators: 1: the [sail_cmp_settings_link] shortcode, 2: the #sail-cmp-open link target.
-#: src/Field/Option.php:75
+#: src/Field/Option.php:98
 #, php-format
 msgid "%1$s gives a link that opens the consent settings again. In menus you can add a custom link to %2$s."
 msgstr "%1$s gir en lenke som åpner samtykkeinnstillingene igjen. I menyer kan du lage en egendefinert lenke til %2$s."
 
-#: src/Field/Option.php:79
+#: src/Field/Option.php:102
 msgid "Other scripts"
 msgstr "Andre script"
 
 #. translators: 1: example script tag, 2-4: category names, 5-6: HTML attribute names.
-#: src/Field/Option.php:82
+#: src/Field/Option.php:105
 #, php-format
 msgid "Scripts that set cookies must be marked so they only run after consent: %1$s. Categories: %2$s, %3$s and %4$s. Embedded videos and maps: replace %5$s with %6$s."
 msgstr "Script som setter informasjonskapsler, må merkes slik at de bare kjører etter samtykke: %1$s. Kategorier: %2$s, %3$s og %4$s. Innebygde videoer og kart: bytt %5$s med %6$s."
+
+#: src/Integration/Elementor.php:154
+msgid "YouTube video"
+msgstr "YouTube-video"
 
 #: src/Output/Shortcode.php:40
 msgid "Cookie settings"
 msgstr "Innstillinger for informasjonskapsler"
 
-#: src/Plugin.php:72
+#: src/Plugin.php:76
 msgid "Settings"
 msgstr "Innstillinger"
 

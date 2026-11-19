@@ -11,6 +11,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 $options = [
     '_cmp_provider',
     '_sail_cmp_site_id',
+    '_sail_cmp_disable_filter',
     '_gtm_id',
     '_gtm_consent',
     '_gtm_wait_time',
