@@ -10,6 +10,9 @@ class Plugin
     private $db_version;
     private $plugin_version;
 
+    /** @var Filter\Blocker */
+    private $blocker;
+
     public function __construct($plugin_data)
     {
         $this->plugin_version = $plugin_data['Version'];
@@ -25,7 +28,7 @@ class Plugin
         add_action('wp_head', [ $this, 'header_preconnect' ], PHP_INT_MIN);
 
         new Admin\Notice();
-        new Filter\Blocker();
+        $this->blocker = new Filter\Blocker();
 
         add_filter('plugin_action_links_' . plugin_basename(CMP_GTM_PLUGIN_DIR . 'index.php'), [ $this, 'plugin_action_links' ]);
     }
@@ -42,7 +45,7 @@ class Plugin
 
     public function integration()
     {
-        new Integration\Elementor();
+        new Integration\Elementor( $this->blocker );
     }
 
     public function boot()

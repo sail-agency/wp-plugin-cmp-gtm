@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-19T09:01:19+00:00\n"
+"POT-Creation-Date: 2026-11-19T11:52:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: sail-cmp\n"
@@ -141,11 +141,15 @@ msgstr ""
 msgid "Scripts that set cookies must be marked so they only run after consent: %1$s. Categories: %2$s, %3$s and %4$s. Embedded videos and maps: replace %5$s with %6$s."
 msgstr ""
 
+#: src/Integration/Elementor.php:154
+msgid "YouTube video"
+msgstr ""
+
 #: src/Output/Shortcode.php:40
 msgid "Cookie settings"
 msgstr ""
 
-#: src/Plugin.php:73
+#: src/Plugin.php:76
 msgid "Settings"
 msgstr ""
 
