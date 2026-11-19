@@ -25,6 +25,7 @@ class Plugin
         add_action('wp_head', [ $this, 'header_preconnect' ], PHP_INT_MIN);
 
         new Admin\Notice();
+        new Filter\Blocker();
 
         add_filter('plugin_action_links_' . plugin_basename(CMP_GTM_PLUGIN_DIR . 'index.php'), [ $this, 'plugin_action_links' ]);
     }

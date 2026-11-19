@@ -37,6 +37,15 @@ class Option
               'value' => 'sail-cmp'
             ]
           ] ),
+        Field::make( 'checkbox', 'sail_cmp_disable_filter', __('Turn off blocking of embeds and scripts', 'sail-cmp') )
+          ->set_option_value( 'yes' )
+          ->set_help_text( __('By default, embeds and scripts from YouTube, Vimeo, Google Maps, Spotify, SoundCloud, Facebook, Instagram, X and TikTok are held back until the visitor has consented. Check this to turn that off completely.', 'sail-cmp') )
+          ->set_conditional_logic( [
+            [
+              'field' => 'cmp_provider',
+              'value' => 'sail-cmp'
+            ]
+          ] ),
         Field::make( 'text', 'gtm_id', 'GTM ID' )
         ->set_help_text( __('Multiple IDs can be entered separated by comma (no spaces).', 'sail-cmp') ),
         Field::make( 'checkbox', 'gtm_consent', __('Consent mode', 'sail-cmp') )
@@ -138,6 +147,17 @@ class Option
     {
         $site_id = carbon_get_theme_option( 'sail_cmp_site_id' );
         return self::is_valid_sail_cmp_site_id( $site_id ) ? $site_id : '';
+    }
+
+    /**
+     * Whether third-party embeds and scripts are held back until consent (src/Filter).
+     * Needs Sail CMP with a site ID, since its script is what unblocks them again.
+     */
+    public static function is_sail_cmp_filter_enabled() : bool
+    {
+        return self::get_cmp_provider() === 'sail-cmp'
+            && '' !== self::get_sail_cmp_site_id()
+            && ! carbon_get_theme_option( 'sail_cmp_disable_filter' );
     }
 
     /**
