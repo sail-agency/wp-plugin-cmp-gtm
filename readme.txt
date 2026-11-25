@@ -1,6 +1,6 @@
 === Sail CMP & GTM ===
 Contributors: sail
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: Proprietary
 
 Samtykkebanner for informasjonskapsler med Google Consent Mode v2 og GDPR-vennlig lasting av Google Tag Manager, driftet av Sail.
@@ -25,6 +25,9 @@ Oppdateringer kommer fra Sail (consent.sail.no), ikke fra wordpress.org.
 
 
 == Changelog ==
+
+= 2.1.1 =
+* Google Maps blokkeres som Funksjonelle i stedet for Markedsføring, slik skanneren klassifiserer det. Nettstedet må ha kategorien Funksjonelle i Sail CMP, ellers kan kartet ikke vises.
 
 = 2.1.0 =
 * Innebygd innhold og script holdes tilbake til besøkeren har samtykket. Gjelder innhold, widgeter og script lagt til av tema og utvidelser.
