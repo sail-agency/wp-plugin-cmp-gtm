@@ -4,6 +4,9 @@ namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * Vimeo videos (player.vimeo.com iframes and the player script).
+ *
+ * Analytics, as in the Sail CMP scanner: Vimeo's cookies count plays and do not track the
+ * visitor for advertising.
  */
 class Vimeo extends Provider
 {
@@ -14,7 +17,7 @@ class Vimeo extends Provider
 
     public function category() : string
     {
-        return 'marketing';
+        return 'analytics';
     }
 
     protected function domains() : array

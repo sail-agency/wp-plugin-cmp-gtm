@@ -1,6 +1,6 @@
 === Sail CMP & GTM ===
 Contributors: sail
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: Proprietary
 
 Samtykkebanner for informasjonskapsler med Google Consent Mode v2 og GDPR-vennlig lasting av Google Tag Manager, driftet av Sail.
@@ -25,6 +25,9 @@ Oppdateringer kommer fra Sail (consent.sail.no), ikke fra wordpress.org.
 
 
 == Changelog ==
+
+= 2.1.1 =
+* Kategoriene i blokkeringen følger nå skanneren i Sail CMP: Google Maps, Spotify og SoundCloud blokkeres som Funksjonelle, og Vimeo som Statistikk, i stedet for Markedsføring. YouTube, Facebook, Instagram, X og TikTok er fortsatt Markedsføring. Nettstedet må ha kategorien i Sail CMP, ellers kan innholdet ikke vises.
 
 = 2.1.0 =
 * Innebygd innhold og script holdes tilbake til besøkeren har samtykket. Gjelder innhold, widgeter og script lagt til av tema og utvidelser.

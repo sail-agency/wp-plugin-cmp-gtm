@@ -4,6 +4,8 @@ namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * Spotify players (open.spotify.com/embed iframes and the embed script).
+ *
+ * Functional, as in the Sail CMP scanner: a player the visitor chooses to use.
  */
 class Spotify extends Provider
 {
@@ -14,7 +16,7 @@ class Spotify extends Provider
 
     public function category() : string
     {
-        return 'marketing';
+        return 'functional';
     }
 
     protected function domains() : array

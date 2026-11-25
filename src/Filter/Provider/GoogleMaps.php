@@ -4,6 +4,10 @@ namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * Google Maps: embedded maps (google.com/maps/embed) and the Maps JavaScript API.
+ *
+ * Functional, as in the Sail CMP scanner: a map is content the visitor asks for (directions to
+ * the business), not advertising. The site's config must have the functional category, or the
+ * map can never be shown.
  */
 class GoogleMaps extends Provider
 {
@@ -14,7 +18,7 @@ class GoogleMaps extends Provider
 
     public function category() : string
     {
-        return 'marketing';
+        return 'functional';
     }
 
     protected function domains() : array
