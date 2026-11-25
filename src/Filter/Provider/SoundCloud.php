@@ -4,6 +4,8 @@ namespace Sail\CMP_GTM\Filter\Provider;
 
 /**
  * SoundCloud players (w.soundcloud.com iframes).
+ *
+ * Functional, as in the Sail CMP scanner: a player the visitor chooses to use.
  */
 class SoundCloud extends Provider
 {
@@ -14,7 +16,7 @@ class SoundCloud extends Provider
 
     public function category() : string
     {
-        return 'marketing';
+        return 'functional';
     }
 
     protected function domains() : array

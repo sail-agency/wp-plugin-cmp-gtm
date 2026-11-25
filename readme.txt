@@ -27,7 +27,7 @@ Oppdateringer kommer fra Sail (consent.sail.no), ikke fra wordpress.org.
 == Changelog ==
 
 = 2.1.1 =
-* Google Maps blokkeres som Funksjonelle i stedet for Markedsføring, slik skanneren klassifiserer det. Nettstedet må ha kategorien Funksjonelle i Sail CMP, ellers kan kartet ikke vises.
+* Kategoriene i blokkeringen følger nå skanneren i Sail CMP: Google Maps, Spotify og SoundCloud blokkeres som Funksjonelle, og Vimeo som Statistikk, i stedet for Markedsføring. YouTube, Facebook, Instagram, X og TikTok er fortsatt Markedsføring. Nettstedet må ha kategorien i Sail CMP, ellers kan innholdet ikke vises.
 
 = 2.1.0 =
 * Innebygd innhold og script holdes tilbake til besøkeren har samtykket. Gjelder innhold, widgeter og script lagt til av tema og utvidelser.
